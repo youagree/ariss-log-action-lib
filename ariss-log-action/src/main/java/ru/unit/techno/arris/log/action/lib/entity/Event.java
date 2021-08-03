@@ -2,6 +2,7 @@ package ru.unit.techno.arris.log.action.lib.entity;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +28,7 @@ public class Event {
     private Long commonId;
 
     @Column(name = "entry_device_value")
-    private Long entryDeviceValue;
+    private Long deviceId;
 
     @Column(name = "event_time")
     private LocalDateTime eventTime;
@@ -43,4 +44,11 @@ public class Event {
 
     @Column(name = "gos_number")
     private String gosNumber;
+
+    @Column(name = "is_errored")
+    private boolean isErrored;
+
+    @Type(type = "jsonb")
+    @Column(name = "description", columnDefinition = "jsonb")
+    private Description description;
 }

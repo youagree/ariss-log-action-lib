@@ -1,6 +1,7 @@
 
 package ru.unit.techno.arris.log.action.lib.service;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +25,7 @@ public class LogActionImpl implements LogAction {
 
     @Override
     @Transactional
-    public void logSuccessAction(ActionObject actionObject) {
+    public void logSuccessAction(@NonNull ActionObject actionObject) {
         Map<Long, MetaObject> type = deviceEventConfig.getType();
 
         MetaObject metaObject = Optional.ofNullable(type.get(actionObject.getDeviceId()))
@@ -33,8 +34,8 @@ public class LogActionImpl implements LogAction {
                         .setInfo(""));
 
         eventRepository.save(new Event()
-                .setCommonId(actionObject.getRfidLabelValue())
-                .setEntryDeviceValue(actionObject.getDeviceId())
+                .setCommonId(actionObject.getCommonId())
+                .setDeviceId(actionObject.getDeviceId())
                 .setEventTime(actionObject.getEventTime())
                 .setEventType(metaObject.getEntryType().getValue())
                 .setGosNumber(actionObject.getGosNumber())
@@ -46,8 +47,8 @@ public class LogActionImpl implements LogAction {
     @Override
     public void logExceptionObject(ActionObject actionObject) {
         eventRepository.save(new Event()
-                .setCommonId(actionObject.getRfidLabelValue())
-                .setEntryDeviceValue(actionObject.getDeviceId())
+                .setCommonId(actionObject.getCommonId())
+                .setDeviceId(actionObject.getDeviceId())
                 .setEventTime(actionObject.getEventTime())
                 .setEventType(null)
                 .setGosNumber(actionObject.getGosNumber())
