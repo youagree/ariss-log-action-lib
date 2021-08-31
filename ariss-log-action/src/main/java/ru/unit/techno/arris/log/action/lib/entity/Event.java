@@ -1,15 +1,15 @@
 package ru.unit.techno.arris.log.action.lib.entity;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.hibernate.Hibernate;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -52,18 +52,4 @@ public class Event {
     @Type(type = "jsonb")
     @Column(name = "description", columnDefinition = "jsonb")
     private Description description;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Event event = (Event) o;
-
-        return Objects.equals(id, event.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 1491041522;
-    }
 }
