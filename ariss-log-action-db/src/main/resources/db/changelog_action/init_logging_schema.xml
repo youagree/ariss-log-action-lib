@@ -3,13 +3,29 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeset>
-        <!-- таблица events -->
+    <!-- Tables -->
+    <changeSet id="create-sequence-event" author="uberdev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="event_id_seq"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="event_id_seq" incrementBy="50"/>
+    </changeSet>
+
+    <changeSet id="create-table-events" author="uberdev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="events"/>
+            </not>
+        </preConditions>
+
+        <!-- ТАБЛИЦА EVENTS -->
         <createTable tableName="events">
             <column name="event_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="rfid_label_value" type="BIGINT"/>
+            <column name="rfid_label_value" type="BOOLEAN"/>
             <column name="entry_device_value" type="BIGINT"/>
             <column name="event_time" type="TIMESTAMP"/>
             <column name="event_type" type="VARCHAR"/>
@@ -19,6 +35,5 @@
             <column name="is_errored" type="BOOLEAN"/>
             <column name="description" type="JSONB"/>
         </createTable>
-    </changeset>
-
+    </changeSet>
 </databaseChangeLog>
