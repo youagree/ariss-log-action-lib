@@ -1,8 +1,8 @@
-package ru.unit.techno.arris.log.action.lib.model;
+package ru.unit.techno.ariss.log.action.lib.model;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import ru.unit.techno.arris.log.action.lib.entity.Description;
+import ru.unit.techno.ariss.log.action.lib.entity.Description;
 
 import java.time.LocalDateTime;
 

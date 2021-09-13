@@ -1,4 +1,4 @@
-package ru.unit.techno.arris.log.action.lib.entity;
+package ru.unit.techno.ariss.log.action.lib.entity;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Getter;

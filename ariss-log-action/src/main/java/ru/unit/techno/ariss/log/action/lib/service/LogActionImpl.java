@@ -1,17 +1,17 @@
 
-package ru.unit.techno.arris.log.action.lib.service;
+package ru.unit.techno.ariss.log.action.lib.service;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import ru.unit.techno.arris.log.action.lib.api.LogAction;
-import ru.unit.techno.arris.log.action.lib.config.DeviceEventConfig;
-import ru.unit.techno.arris.log.action.lib.entity.Event;
-import ru.unit.techno.arris.log.action.lib.model.ActionObject;
-import ru.unit.techno.arris.log.action.lib.model.EntryType;
-import ru.unit.techno.arris.log.action.lib.model.MetaObject;
-import ru.unit.techno.arris.log.action.lib.repository.EventRepository;
+import ru.unit.techno.ariss.log.action.lib.api.LogAction;
+import ru.unit.techno.ariss.log.action.lib.config.DeviceEventConfig;
+import ru.unit.techno.ariss.log.action.lib.entity.Event;
+import ru.unit.techno.ariss.log.action.lib.model.ActionObject;
+import ru.unit.techno.ariss.log.action.lib.model.EntryType;
+import ru.unit.techno.ariss.log.action.lib.model.MetaObject;
+import ru.unit.techno.ariss.log.action.lib.repository.EventRepository;
 
 import java.util.Map;
 import java.util.Optional;
