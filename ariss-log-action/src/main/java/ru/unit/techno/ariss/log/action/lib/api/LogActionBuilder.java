@@ -1,8 +1,8 @@
 
-package ru.unit.techno.arris.log.action.lib.api;
+package ru.unit.techno.ariss.log.action.lib.api;
 
-import ru.unit.techno.arris.log.action.lib.entity.Description;
-import ru.unit.techno.arris.log.action.lib.model.ActionStatus;
+import ru.unit.techno.ariss.log.action.lib.model.ActionStatus;
+import ru.unit.techno.ariss.log.action.lib.entity.Description;
 
 public interface LogActionBuilder {
 

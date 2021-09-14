@@ -1,5 +1,5 @@
 
-package ru.unit.techno.arris.log.action.lib.model;
+package ru.unit.techno.ariss.log.action.lib.model;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
