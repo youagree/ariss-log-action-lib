@@ -36,4 +36,34 @@ public class ActionResourceTest extends BaseTestClass {
         }, "/ui/actions?info=info", HttpStatus.OK);
         assertEquals(result.getContent().size(), 1);
     }
+
+    @Test
+    public void testFilteringByInfoWithSort() {
+        eventRepository.saveAll(List.of(
+                new Event()
+                        .setId(1L)
+                        .setCommonId(123124L)
+                        .setDeviceId(12412L)
+                        .setEventTime(LocalDateTime.of(2021, 12, 5, 12, 12))
+                        .setEventType("IN")
+                        .setInfo("info")
+                        .setStateOfAction("ACTIVE")
+                        .setGosNumber("А456ВГ")
+                        .setDescription(new Description()),
+                new Event()
+                        .setId(2L)
+                        .setCommonId(123124L)
+                        .setDeviceId(12412L)
+                        .setEventTime(LocalDateTime.of(2021, 12, 7, 12, 12))
+                        .setEventType("IN")
+                        .setInfo("info")
+                        .setStateOfAction("ACTIVE")
+                        .setGosNumber("А456ВГ")
+                        .setDescription(new Description())
+        ));
+
+        RestPageImpl<ActionDto> result = testUtils.invokeGetApi(new ParameterizedTypeReference<RestPageImpl<ActionDto>>() {
+        }, "/ui/actions?sort=eventTime,desc", HttpStatus.OK);
+        assertEquals(result.getContent().get(0).getEventTime(), LocalDateTime.of(2021, 12, 7, 12, 12));
+    }
 }
