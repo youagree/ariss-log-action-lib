@@ -48,6 +48,11 @@
                 <artifactId>ariss-log-action</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>ru.unit.techno</groupId>
+                <artifactId>ariss-log-action-db-test-module</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!-- mappers -->
             <dependency>

@@ -17,7 +17,7 @@
         <liquibase.port>5432</liquibase.port>
         <liquibase.db>unit_techno</liquibase.db>
         <liquibase.schema>log_action_test</liquibase.schema>
-        <liquibase.user>log_action_admin</liquibase.user>
+        <liquibase.user>log_admin</liquibase.user>
         <liquibase.password>squd</liquibase.password>
 
         <!--liquibase plugin version-->

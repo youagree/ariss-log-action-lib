@@ -27,7 +27,7 @@
 
         <dependency>
             <groupId>ru.unit.techno</groupId>
-            <artifactId>ariss-log-action-db</artifactId>
+            <artifactId>ariss-log-action-db-test-module</artifactId>
         </dependency>
         <dependency>
             <groupId>ru.unit.techno</groupId>

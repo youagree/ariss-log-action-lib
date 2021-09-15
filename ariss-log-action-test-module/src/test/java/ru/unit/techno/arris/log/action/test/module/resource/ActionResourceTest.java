@@ -17,14 +17,12 @@ import java.util.List;
 
 public class ActionResourceTest extends BaseTestClass {
 
-    public static final String BASE_URL = "ariss-log-action-test-application";
-
     @Test
     public void testFilteringByInfo() {
         eventRepository.saveAll(List.of(
                 new Event()
                         .setId(1L)
-                        .setRfidLabelValue(123124L)
+                        .setCommonId(123124L)
                         .setDeviceId(12412L)
                         .setEventTime(LocalDateTime.of(2021, 12, 5, 12, 12))
                         .setEventType("IN")
@@ -35,7 +33,7 @@ public class ActionResourceTest extends BaseTestClass {
         ));
 
         RestPageImpl<ActionDto> result = testUtils.invokeGetApi(new ParameterizedTypeReference<RestPageImpl<ActionDto>>() {
-        }, BASE_URL + "/ui/actions?info=info", HttpStatus.OK);
+        }, "/ui/actions?info=info", HttpStatus.OK);
         assertEquals(result.getContent().size(), 1);
     }
 }

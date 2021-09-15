@@ -25,7 +25,7 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "event_id_seq")
     private Long id;
 
-    @Column(name = "rfid_label_value")
+    @Column(name = "common_id")
     private Long commonId;
 
     @Column(name = "entry_device_value")
