@@ -7,6 +7,8 @@
     <modules>
         <module>ariss-log-action</module>
         <module>ariss-log-action-db</module>
+        <module>ariss-log-action-test-module</module>
+        <module>ariss-log-action-db-test-module</module>
     </modules>
 
     <groupId>ru.unit.techno</groupId>
@@ -21,6 +23,7 @@
         <springfox-swagger2>2.9.2</springfox-swagger2>
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <hibernate.types>2.3.5</hibernate.types>
+        <arg-spec-resolver>2.0.0</arg-spec-resolver>
 
         <build.number>-1</build.number>
     </properties>
@@ -33,6 +36,17 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>ru.unit.techno</groupId>
+                <artifactId>ariss-log-action-db</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ru.unit.techno</groupId>
+                <artifactId>ariss-log-action</artifactId>
+                <version>${project.version}</version>
             </dependency>
 
             <!-- mappers -->
@@ -57,6 +71,11 @@
                 <groupId>com.vladmihalcea</groupId>
                 <artifactId>hibernate-types-52</artifactId>
                 <version>${hibernate.types}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.kaczmarzyk</groupId>
+                <artifactId>specification-arg-resolver</artifactId>
+                <version>${arg-spec-resolver}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
