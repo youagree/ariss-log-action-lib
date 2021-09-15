@@ -1,0 +1,12 @@
+spring:
+  logging:
+    level:
+      ROOT: DEBUG
+
+  liquibase:
+    enabled: true
+    parameters:
+      schema: log_action_test
+      text_array_type: ARRAY
+    change-log: classpath:database_changelog.xml
+    drop-first: true
