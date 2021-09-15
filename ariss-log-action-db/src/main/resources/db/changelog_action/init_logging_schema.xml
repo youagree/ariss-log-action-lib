@@ -25,7 +25,7 @@
             <column name="event_id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="rfid_label_value" type="BIGINT"/>
+            <column name="common_id" type="BIGINT"/>
             <column name="entry_device_value" type="BIGINT"/>
             <column name="event_time" type="TIMESTAMP"/>
             <column name="event_type" type="VARCHAR"/>

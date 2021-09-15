@@ -34,7 +34,7 @@ public class LogActionImpl implements LogAction {
                         .setInfo(""));
 
         eventRepository.save(new Event()
-                .setRfidLabelValue(actionObject.getCommonId())
+                .setCommonId(actionObject.getCommonId())
                 .setDeviceId(actionObject.getDeviceId())
                 .setEventTime(actionObject.getEventTime())
                 .setEventType(metaObject.getEntryType().getValue())
@@ -47,7 +47,7 @@ public class LogActionImpl implements LogAction {
     @Override
     public void logExceptionObject(ActionObject actionObject) {
         eventRepository.save(new Event()
-                .setRfidLabelValue(actionObject.getCommonId())
+                .setCommonId(actionObject.getCommonId())
                 .setDeviceId(actionObject.getDeviceId())
                 .setEventTime(actionObject.getEventTime())
                 .setEventType(null)

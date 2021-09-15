@@ -26,7 +26,7 @@ public class Event {
     private Long id;
 
     @Column(name = "rfid_label_value")
-    private Long rfidLabelValue;
+    private Long commonId;
 
     @Column(name = "entry_device_value")
     private Long deviceId;
