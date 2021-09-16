@@ -9,7 +9,10 @@ import ru.unit.techno.ariss.log.action.lib.model.ActionObject;
 import ru.unit.techno.ariss.log.action.lib.model.ActionStatus;
 import ru.unit.techno.ariss.log.action.lib.entity.Description;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 
 @Component
 @RequiredArgsConstructor
@@ -26,7 +29,7 @@ public class LogActionBuilderImpl implements LogActionBuilder {
                 .setDeviceId(deviceId)
                 .setCommonId(commonId)
                 .setActionStatus(actionStatus)
-                .setEventTime(LocalDateTime.now())
+                .setEventTime(Calendar.getInstance().getTime())
                 .setGosNumber(gosNumber));
     }
 
@@ -40,7 +43,7 @@ public class LogActionBuilderImpl implements LogActionBuilder {
         logAction.logSuccessAction(new ActionObject()
                 .setCommonId(commonId)
                 .setActionStatus(actionStatus)
-                .setEventTime(LocalDateTime.now())
+                .setEventTime(Calendar.getInstance().getTime())
                 .setDeviceId(deviceId)
                 .setGosNumber(gosNumber)
                 .setIsErrored(isErrored)

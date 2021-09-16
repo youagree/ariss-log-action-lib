@@ -34,9 +34,8 @@ public class ActionsResource {
     public Page<ActionDto> filterAction(
             @And({@Spec(path = "eventTime", params = "eventTime", spec = GreaterThanOrEqual.class),
                     @Spec(path = "info", params = "info", spec = EqualIgnoreCase.class),
-                    //todo поменять местами
-                    @Spec(path = "rfid_label_value", params = "rfidLabelValue", spec = Equal.class),
-                    @Spec(path = "gos_number", params = "gosNumber", spec = Equal.class)
+                    @Spec(path = "commonId", params = "commonId", spec = Equal.class),
+                    @Spec(path = "governmentNumber", params = "gosNumber", spec = Equal.class)
             }) Specification<Event> specification, Pageable pageable) {
         return actionService.getActionsWithFilter(specification, pageable);
     }

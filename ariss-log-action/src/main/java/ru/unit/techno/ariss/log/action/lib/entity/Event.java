@@ -9,7 +9,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -32,7 +32,7 @@ public class Event {
     private Long deviceId;
 
     @Column(name = "event_time")
-    private LocalDateTime eventTime;
+    private Date eventTime;
 
     @Column(name = "event_type")
     private String eventType;
