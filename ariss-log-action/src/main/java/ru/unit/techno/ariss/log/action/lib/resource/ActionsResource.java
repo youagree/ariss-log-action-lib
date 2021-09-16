@@ -26,7 +26,9 @@ public class ActionsResource {
 
     /**
      * path - это поле в энтити
-     * params - в базе
+     * params - в поле в урле на вход
+     * <p>
+     * для фильтрации с LocalDateTime надо прописать config = "yyyy-MM-dd'T'HH:mm:ss", а в урле подставить: "2018-07-06T09:05:57"
      *
      * @return
      */
