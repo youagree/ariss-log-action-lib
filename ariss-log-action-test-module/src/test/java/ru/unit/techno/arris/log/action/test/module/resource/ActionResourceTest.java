@@ -29,11 +29,52 @@ public class ActionResourceTest extends BaseTestClass {
                         .setInfo("info")
                         .setStateOfAction("ACTIVE")
                         .setGosNumber("А456ВГ")
+                        .setDescription(new Description()),
+                new Event()
+                        .setId(2L)
+                        .setCommonId(123124L)
+                        .setDeviceId(12412L)
+                        .setEventTime(LocalDateTime.of(2021, 12, 5, 12, 12))
+                        .setEventType("IN")
+                        .setInfo("unknown")
+                        .setStateOfAction("ACTIVE")
+                        .setGosNumber("А456ВГ")
                         .setDescription(new Description())
         ));
 
         RestPageImpl<ActionDto> result = testUtils.invokeGetApi(new ParameterizedTypeReference<RestPageImpl<ActionDto>>() {
         }, "/ui/actions?info=info", HttpStatus.OK);
+        assertEquals(result.getContent().size(), 1);
+        assertEquals(result.getContent().get(0).getId(), 2L);
+    }
+
+    @Test
+    public void testFilteringByDate() {
+        eventRepository.saveAll(List.of(
+                new Event()
+                        .setId(1L)
+                        .setCommonId(123124L)
+                        .setDeviceId(12412L)
+                        .setEventTime(LocalDateTime.of(2021, 12, 5, 12, 12))
+                        .setEventType("IN")
+                        .setInfo("info")
+                        .setStateOfAction("ACTIVE")
+                        .setGosNumber("А456ВГ")
+                        .setDescription(new Description()),
+                new Event()
+                        .setId(2L)
+                        .setCommonId(123124L)
+                        .setDeviceId(12412L)
+                        .setEventTime(LocalDateTime.of(2024, 12, 5, 12, 12))
+                        .setEventType("IN")
+                        .setInfo("unknown")
+                        .setStateOfAction("ACTIVE")
+                        .setGosNumber("А456ВГ")
+                        .setDescription(new Description())
+        ));
+
+        RestPageImpl<ActionDto> result = testUtils.invokeGetApi(new ParameterizedTypeReference<RestPageImpl<ActionDto>>() {
+        }, "/ui/actions?event_time=2023-12-11", HttpStatus.OK);
         assertEquals(result.getContent().size(), 1);
     }
 

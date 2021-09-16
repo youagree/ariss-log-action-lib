@@ -23,7 +23,8 @@
         <springfox-swagger2>2.9.2</springfox-swagger2>
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <hibernate.types>2.3.5</hibernate.types>
-        <arg-spec-resolver>2.0.0</arg-spec-resolver>
+        <arg-spec-resolver>2.6.2</arg-spec-resolver>
+        <spy.version>3.7.0</spy.version>
 
         <build.number>-1</build.number>
     </properties>
@@ -59,6 +60,11 @@
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${org.mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>p6spy</groupId>
+                <artifactId>p6spy</artifactId>
+                <version>${spy.version}</version>
             </dependency>
 
             <!--swagger-->
