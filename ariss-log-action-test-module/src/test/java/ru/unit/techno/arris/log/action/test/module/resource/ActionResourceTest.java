@@ -12,8 +12,6 @@ import ru.unit.techno.ariss.log.action.lib.entity.Event;
 import ru.unit.techno.arris.log.action.test.module.base.BaseTestClass;
 import ru.unit.techno.arris.log.action.test.module.base.RestPageImpl;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -26,7 +24,7 @@ public class ActionResourceTest extends BaseTestClass {
                         .setId(1L)
                         .setCommonId(123124L)
                         .setDeviceId(12412L)
-                        .setEventTime(Date.valueOf(LocalDate.of(2021, 12, 5)))
+                        .setEventTime(LocalDateTime.of(2021, 12, 5, 18, 30, 0))
                         .setEventType("IN")
                         .setInfo("info")
                         .setStateOfAction("ACTIVE")
@@ -36,7 +34,7 @@ public class ActionResourceTest extends BaseTestClass {
                         .setId(2L)
                         .setCommonId(123124L)
                         .setDeviceId(12412L)
-                        .setEventTime(Date.valueOf(LocalDate.of(2021, 12, 5)))
+                        .setEventTime(LocalDateTime.of(2021, 12, 5, 15, 30, 0))
                         .setEventType("IN")
                         .setInfo("unknown")
                         .setStateOfAction("ACTIVE")
@@ -47,7 +45,7 @@ public class ActionResourceTest extends BaseTestClass {
         RestPageImpl<ActionDto> result = testUtils.invokeGetApi(new ParameterizedTypeReference<RestPageImpl<ActionDto>>() {
         }, "/ui/actions?info=info", HttpStatus.OK);
         assertEquals(result.getContent().size(), 1);
-        assertEquals(result.getContent().get(0).getId(), 2L);
+        assertEquals(result.getContent().get(0).getId(), 1L);
     }
 
     @Test
@@ -57,7 +55,7 @@ public class ActionResourceTest extends BaseTestClass {
                         .setId(1L)
                         .setCommonId(123124L)
                         .setDeviceId(12412L)
-                        .setEventTime(Date.valueOf(LocalDate.of(2021, 12, 5)))
+                        .setEventTime(LocalDateTime.of(2021, 12, 5, 4, 56, 0))
                         .setEventType("IN")
                         .setInfo("info")
                         .setStateOfAction("ACTIVE")
@@ -67,7 +65,7 @@ public class ActionResourceTest extends BaseTestClass {
                         .setId(2L)
                         .setCommonId(123124L)
                         .setDeviceId(12412L)
-                        .setEventTime(Date.valueOf(LocalDate.of(2024, 11, 5)))
+                        .setEventTime(LocalDateTime.of(2024, 11, 5, 14, 40, 0))
                         .setEventType("IN")
                         .setInfo("unknown")
                         .setStateOfAction("ACTIVE")
@@ -76,7 +74,7 @@ public class ActionResourceTest extends BaseTestClass {
         ));
 
         RestPageImpl<ActionDto> result = testUtils.invokeGetApi(new ParameterizedTypeReference<RestPageImpl<ActionDto>>() {
-        }, "/ui/actions?eventTime=2023-11-22", HttpStatus.OK);
+        }, "/ui/actions?before=2023-11-22T10:00:00&after=2025-12-09T10:00:00", HttpStatus.OK);
         assertEquals(result.getContent().size(), 1);
     }
 
@@ -87,7 +85,7 @@ public class ActionResourceTest extends BaseTestClass {
                         .setId(1L)
                         .setCommonId(123124L)
                         .setDeviceId(12412L)
-                        .setEventTime(Date.valueOf(LocalDate.of(2021, 12, 5)))
+                        .setEventTime(LocalDateTime.of(2021, 12, 5, 11, 45, 0))
                         .setEventType("IN")
                         .setInfo("info")
                         .setStateOfAction("ACTIVE")
@@ -97,7 +95,7 @@ public class ActionResourceTest extends BaseTestClass {
                         .setId(2L)
                         .setCommonId(123124L)
                         .setDeviceId(12412L)
-                        .setEventTime(Date.valueOf(LocalDate.of(2021, 12, 7)))
+                        .setEventTime(LocalDateTime.of(2021, 12, 7, 5, 33, 0))
                         .setEventType("IN")
                         .setInfo("info")
                         .setStateOfAction("ACTIVE")
@@ -106,7 +104,7 @@ public class ActionResourceTest extends BaseTestClass {
         ));
 
         RestPageImpl<ActionDto> result = testUtils.invokeGetApi(new ParameterizedTypeReference<RestPageImpl<ActionDto>>() {
-        }, "/ui/actions?sort=eventTime,desc", HttpStatus.OK);
-        assertEquals(result.getContent().get(0).getEventTime(), LocalDateTime.of(2021, 12, 7, 12, 12));
+        }, "/ui/actions?before=2021-12-03T10:00:00&after=2021-12-08T10:00:00&sort=eventTime,desc", HttpStatus.OK);
+        assertEquals(result.getContent().get(0).getEventTime(), LocalDateTime.of(2021, 12, 7, 5, 33, 0));
     }
 }

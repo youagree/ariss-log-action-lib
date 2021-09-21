@@ -2,6 +2,7 @@
 package ru.unit.techno.arris.log.action.test.module.base;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.After;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -46,5 +47,10 @@ public class BaseTestClass {
     @DynamicPropertySource
     static void dynamicSource(DynamicPropertyRegistry registry) {
         registry.add("spring.datasource.url", () -> DB_URL);
+    }
+
+    @After
+    public void destroy() {
+        eventRepository.deleteAll();
     }
 }
