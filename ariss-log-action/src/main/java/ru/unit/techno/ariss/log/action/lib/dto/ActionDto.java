@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Data
 public class ActionDto {
     private Long id;
-    private Long rfidLabelValue;
+    private Long commonId;
     private Long deviceId;
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime eventTime;
