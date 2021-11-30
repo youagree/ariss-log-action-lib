@@ -37,7 +37,7 @@ public class ActionsResource {
             @And({@Spec(path = "eventTime", params = {"before", "after"}, spec = Between.class, config = "yyyy-MM-dd'T'HH:mm:ss"),
                     @Spec(path = "info", params = "info", spec = EqualIgnoreCase.class),
                     @Spec(path = "commonId", params = "commonId", spec = Equal.class),
-                    @Spec(path = "governmentNumber", params = "gosNumber", spec = Equal.class)
+                    @Spec(path = "gosNumber", params = "gosNumber", spec = Equal.class)
             }) Specification<Event> specification, Pageable pageable) {
         return actionService.getActionsWithFilter(specification, pageable);
     }
