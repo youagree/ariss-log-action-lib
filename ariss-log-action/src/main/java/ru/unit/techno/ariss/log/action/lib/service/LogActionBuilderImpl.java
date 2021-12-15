@@ -37,7 +37,7 @@ public class LogActionBuilderImpl implements LogActionBuilder {
                                               ActionStatus actionStatus,
                                               boolean isErrored,
                                               Description description) {
-        logAction.logSuccessAction(new ActionObject()
+        logAction.logExceptionObject(new ActionObject()
                 .setCommonId(commonId)
                 .setActionStatus(actionStatus)
                 .setEventTime(LocalDateTime.now())

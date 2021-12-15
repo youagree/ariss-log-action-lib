@@ -3,6 +3,7 @@ package ru.unit.techno.arris.log.action.test.module.base;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
+import org.junit.jupiter.api.AfterEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -39,7 +40,7 @@ public class BaseTestClass {
 
     static {
         postgresDB.start();
-        DB_URL = String.format("jdbc:p6spy:postgresql://%s:%d/unit_techno?currentSchema=log_action_test",
+        DB_URL = String.format("jdbc:postgresql://%s:%d/unit_techno?currentSchema=log_action_test",
                 postgresDB.getContainerIpAddress(),
                 postgresDB.getFirstMappedPort());
     }

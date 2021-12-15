@@ -50,10 +50,12 @@ public class LogActionImpl implements LogAction {
                 .setCommonId(actionObject.getCommonId())
                 .setDeviceId(actionObject.getDeviceId())
                 .setEventTime(actionObject.getEventTime())
-                .setEventType(null)
+                .setEventType(EntryType.UNKNOWN.getValue())
                 .setGosNumber(actionObject.getGosNumber())
                 .setInfo(null)
                 .setStateOfAction(actionObject.getActionStatus().getValue())
+                .setErrored(actionObject.getIsErrored())
+                .setDescription(actionObject.getDescription())
         );
     }
 }

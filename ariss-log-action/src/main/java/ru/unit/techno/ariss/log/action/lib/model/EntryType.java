@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum EntryType {
     IN("ВЪЕЗД"),
     OUT("ВЫЕЗД"),
-    UNKNOWN("НЕИЗВЕСТНЫЙ ОБЪЕКТ");
+    UNKNOWN("НЕИЗВЕСТНО");
 
     @Getter
     private final String value;

@@ -3,6 +3,8 @@ package ru.unit.techno.arris.log.action.test.module.resource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatus;
@@ -19,17 +21,17 @@ public class ActionResourceTest extends BaseTestClass {
 
     @Test
     public void testFilteringByInfo() {
-        eventRepository.saveAll(List.of(
-                new Event()
-                        .setId(1L)
-                        .setCommonId(123124L)
-                        .setDeviceId(12412L)
-                        .setEventTime(LocalDateTime.of(2021, 12, 5, 18, 30, 0))
-                        .setEventType("IN")
-                        .setInfo("info")
-                        .setStateOfAction("ACTIVE")
-                        .setGosNumber("А456ВГ")
-                        .setDescription(new Description()),
+        eventRepository.deleteAll();
+        Event event = new Event()
+                .setCommonId(123124L)
+                .setDeviceId(12412L)
+                .setEventTime(LocalDateTime.of(2021, 12, 5, 18, 30, 0))
+                .setEventType("IN")
+                .setInfo("info")
+                .setStateOfAction("ACTIVE")
+                .setGosNumber("А456ВГ")
+                .setDescription(new Description());
+        eventRepository.saveAll(List.of(event,
                 new Event()
                         .setId(2L)
                         .setCommonId(123124L)
@@ -45,11 +47,12 @@ public class ActionResourceTest extends BaseTestClass {
         RestPageImpl<ActionDto> result = testUtils.invokeGetApi(new ParameterizedTypeReference<RestPageImpl<ActionDto>>() {
         }, "/ui/actions?info=info", HttpStatus.OK);
         assertEquals(result.getContent().size(), 1);
-        assertEquals(result.getContent().get(0).getId(), 1L);
+        assertEquals(result.getContent().get(0).getId(), event.getId());
     }
 
     @Test
     public void testFilteringByDate() {
+        eventRepository.deleteAll();
         eventRepository.saveAll(List.of(
                 new Event()
                         .setId(1L)
@@ -80,6 +83,7 @@ public class ActionResourceTest extends BaseTestClass {
 
     @Test
     public void testFilteringByInfoWithSort() {
+        eventRepository.deleteAll();
         eventRepository.saveAll(List.of(
                 new Event()
                         .setId(1L)
