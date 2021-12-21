@@ -26,12 +26,7 @@ public class LogActionImpl implements LogAction {
     @Override
     @Transactional
     public void logSuccessAction(@NonNull ActionObject actionObject) {
-        Map<Long, MetaObject> type = deviceEventConfig.getType();
-
-        MetaObject metaObject = Optional.ofNullable(type.get(actionObject.getDeviceId()))
-                .orElse(new MetaObject()
-                        .setEntryType(EntryType.UNKNOWN)
-                        .setInfo(""));
+        MetaObject metaObject = getMetaObject(actionObject);
 
         eventRepository.save(new Event()
                 .setCommonId(actionObject.getCommonId())
@@ -46,16 +41,26 @@ public class LogActionImpl implements LogAction {
 
     @Override
     public void logExceptionObject(ActionObject actionObject) {
+        MetaObject metaObject = getMetaObject(actionObject);
         eventRepository.save(new Event()
                 .setCommonId(actionObject.getCommonId())
                 .setDeviceId(actionObject.getDeviceId())
                 .setEventTime(actionObject.getEventTime())
-                .setEventType(EntryType.UNKNOWN.getValue())
+                .setEventType(metaObject.getEntryType().getValue())
                 .setGosNumber(actionObject.getGosNumber())
-                .setInfo(null)
+                .setInfo(metaObject.getInfo())
                 .setStateOfAction(actionObject.getActionStatus().getValue())
                 .setErrored(actionObject.getIsErrored())
                 .setDescription(actionObject.getDescription())
         );
+    }
+
+    private MetaObject getMetaObject(ActionObject actionObject) {
+        Map<Long, MetaObject> type = deviceEventConfig.getType();
+
+        return Optional.ofNullable(type.get(actionObject.getDeviceId()))
+                .orElse(new MetaObject()
+                        .setEntryType(EntryType.UNKNOWN)
+                        .setInfo(""));
     }
 }
