@@ -2,6 +2,7 @@
 package ru.unit.techno.arris.log.action.test.module.resource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +16,7 @@ import ru.unit.techno.arris.log.action.test.module.base.BaseTestClass;
 import ru.unit.techno.arris.log.action.test.module.base.RestPageImpl;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 public class ActionResourceTest extends BaseTestClass {
@@ -110,5 +112,24 @@ public class ActionResourceTest extends BaseTestClass {
         RestPageImpl<ActionDto> result = testUtils.invokeGetApi(new ParameterizedTypeReference<RestPageImpl<ActionDto>>() {
         }, "/ui/actions?before=2021-12-03T10:00:00&after=2021-12-08T10:00:00&sort=eventTime,desc", HttpStatus.OK);
         assertEquals(result.getContent().get(0).getEventTime(), LocalDateTime.of(2021, 12, 7, 5, 33, 0));
+    }
+
+    @Test
+    public void testTimeConvert() {
+        eventRepository.deleteAll();
+        Event event = new Event()
+                .setCommonId(123124L)
+                .setDeviceId(12412L)
+                .setEventTime(LocalDateTime.now())
+                .setEventType("IN")
+                .setInfo("info")
+                .setStateOfAction("ACTIVE")
+                .setGosNumber("А456ВГ")
+                .setDescription(new Description());
+
+        eventRepository.save(event);
+        Event event1 = eventRepository.findAll().get(0);
+        ActionDto actionDto = actionMapper.toDto(event1);
+        assertNotEquals(event.getEventTime(), actionDto.getEventTime());
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.BindMode;
 import org.testcontainers.containers.PostgreSQLContainer;
+import ru.unit.techno.ariss.log.action.lib.mapper.ActionMapper;
 import ru.unit.techno.ariss.log.action.lib.repository.EventRepository;
 import ru.unit.techno.ariss.log.action.lib.service.ActionService;
 
@@ -28,6 +29,9 @@ public class BaseTestClass {
 
     @Autowired
     protected ActionService actionService;
+
+    @Autowired
+    protected ActionMapper actionMapper;
 
     private static final String DB_NAME = "unit_techno";
     public static String DB_URL = null;
